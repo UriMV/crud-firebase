@@ -1,0 +1,112 @@
+/* styles.css */
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Estilos para el encabezado */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.logout-btn {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #cc0000;
+}
+
+/* Estilos para el enlace "Agregar Nuevo" */
+.container > a {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.container > a:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para la lista de elementos */
+#items-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#items-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+}
+
+#items-list li:last-child {
+    border-bottom: none;
+}
+
+#items-list li:hover {
+    background-color: #f9f9f9;
+}
+
+#items-list li span {
+    font-size: 16px;
+}
+
+#items-list li div a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+#items-list li div a:hover {
+    color: #0056b3;
+}
+
+.delete-btn {
+    color: #ff4d4d !important;
+}
+
+.delete-btn:hover {
+    color: #cc0000 !important;
+}

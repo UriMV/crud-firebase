@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Elemento</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Estilos para el formulario */
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilos para el enlace "Volver" */
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #6c757d;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <h1>Crear Nuevo Elemento</h1>
+    <form action="/create" method="post">
+        <input type="text" name="name" placeholder="Nombre" required>
+        <input type="text" name="description" placeholder="Descripción" required>
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="/">Volver</a>
+</body>
+</html>

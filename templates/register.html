@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Estilos para el formulario */
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilos para el enlace "Iniciar sesión" */
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #6c757d;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #5a6268;
+        }
+
+        /* Estilos para la alerta */
+        .alert {
+            display: none;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registro</h1>
+    <form id="registerForm">
+        <input type="email" name="email" placeholder="Correo" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <button type="submit">Registrar</button>
+    </form>
+    <div id="alert" class="alert"></div>
+    <a href="/">Volver</a>
+
+    <script>
+        // Manejar el envío del formulario con AJAX
+        document.getElementById("registerForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Evitar el envío tradicional del formulario
+
+            const formData = new FormData(this); // Obtener los datos del formulario
+            const alertDiv = document.getElementById("alert");
+
+            fetch("/register", {
+                method: "POST",
+                body: formData,
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text(); // Obtener la respuesta del servidor
+                } else {
+                    throw new Error("Error en el registro");
+                }
+            })
+            .then(data => {
+                // Mostrar alerta de éxito
+                alertDiv.textContent = "Usuario registrado correctamente";
+                alertDiv.style.display = "block";
+                alertDiv.style.backgroundColor = "#d4edda";
+                alertDiv.style.color = "#155724";
+                alertDiv.style.borderColor = "#c3e6cb";
+
+                // Limpiar el formulario después del registro
+                document.getElementById("registerForm").reset();
+            })
+            .catch(error => {
+                // Mostrar alerta de error
+                alertDiv.textContent = "Error registrando usuario: " + error.message;
+                alertDiv.style.display = "block";
+                alertDiv.style.backgroundColor = "#f8d7da";
+                alertDiv.style.color = "#721c24";
+                alertDiv.style.borderColor = "#f5c6cb";
+            });
+        });
+    </script>
+</body>
+</html>

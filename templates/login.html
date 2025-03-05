@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/loginstyle.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="loginForm" action="/login" method="post">
+            <input type="email" id="email" name="email" placeholder="Correo" required>
+            <input type="password" id="password" name="password" placeholder="Contraseña" required>
+            <input type="hidden" id="idToken" name="idToken">
+            <button type="button" id="loginBtn">Iniciar sesión</button>
+        </form>
+    </div>
+
+    <script>
+        // Verifica si se debe forzar la recarga
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('reload')) {
+            window.location.href = "/login";
+        }
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyB8AuKXljiokXlCF0ps89ecHn2uD2Nfdkk",
+            authDomain: "crud-golang.firebaseapp.com",
+            projectId: "crud-golang"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const loginBtn = document.getElementById("loginBtn");
+            if (!loginBtn) {
+                console.error("❌ Botón de login no encontrado");
+                return;
+            }
+
+            loginBtn.addEventListener("click", function () {
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+
+                signInWithEmailAndPassword(auth, email, password)
+                    .then(userCredential => userCredential.user.getIdToken())
+                    .then(idToken => {
+                        document.getElementById("idToken").value = idToken;
+                        document.getElementById("loginForm").submit();
+                    })
+                    .catch(error => {
+                        alert("Error: " + error.message);
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
